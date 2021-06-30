@@ -1,0 +1,30 @@
+:root {
+    --blue: #00BEFF;
+    --purple: #C000FF;
+    --orange: #FF4100;
+    --green: #3FFF00;
+}
+
+.navBar {
+    background-color: var(--orange);
+    text-align: center;
+    color: white;
+    height: 100px;
+}
+
+body {
+
+}
+
+.rosterCard {
+    width: 200px;
+    height: 400px;
+}
+
+.rosterTitle {
+
+}
+
+.rosterBody {
+    
+}
