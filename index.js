@@ -146,9 +146,83 @@ function checkFullTeam(member){
     }
 }
 
+// generate initial html to be populated with details
+function generateInitialHtml(){
+return `<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated Team Full Roster</title>
+
+    <link rel="stylesheet" href="./reset.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./fullRoster.css">
+    
+
+</head>
+
+<body>
+
+    <nav class="navBar">
+        <h2>My Team</h2>
+    </nav>
+
+    <section class="cardContainer">`
+}
+
+// function to help iterate over teammates within html generating function
+function generateTeammate(managerTeammates){
+    return `<main class="rosterCard">
+
+    <figure class="rosterTitle">
+        <h3>${managerFullTeam.returnName()}</h3>
+        <h3>${managerFullTeam.returnRole()}</h3>
+    </figure>
+
+    <figure class="rosterBody">
+        <ul class="detailsList">
+            <li class="memberDetails">Name</li>
+            <li class="memberDetails">ID: ${managerFullTeam.returnId()}</li>
+            <li class="memberDetails">Email: <a href="mailto:${managerFullTeam.returnEmail()}">${managerFullTeam.returnEmail()}</a></a></li>
+            ${managerFullTeam.returnRoleInfo()}
+        </ul>
+    </figure>
+
+</main>`;
+}
+
+// function to close html tags once all members are added in
+function closeHtmlTags(){
+    return `    </section>
+
+    
+    </body>
+    </html>`
+}
+
 // loops through full team to generate html of the entire team
 function generateFullTeam(){
-        // create new file or overwrite if it exists
+    // create new file or overwrite if it exists
     fs.writeFileSync(generatedHtml, '');
     console.log(managerFullTeam)
+
+    // store initial html
+    let initialHtml = generateInitialHtml();
+
+    // iterate over the team members
+    for (let teammate in managerFullTeam){
+        initialHtml += generateTeammate(managerFullTeam[teammate]);
+    }
+
+    // close the html tags to generate final product
+    initialHtml += closeHtmlTags();
+
+    // write the final product to file
+    fs.writeFileSync(closeHtmlTags,initialHtml);
 }
