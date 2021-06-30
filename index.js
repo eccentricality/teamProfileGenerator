@@ -46,13 +46,8 @@ inquirer.prompt([
     let manager = new Manager(response.managerName, response.managerId, response.managerEmail, response.managerOfficeNum)
     // add to array of full team
     managerFullTeam.push(manager);
-    // call either intern or engineer to be created and added to team
-    if (response.managerTeamList === 'Intern'){
-        managerAddIntern();
-    }
-    if (response.managerTeamList === 'Engineer'){
-        managerAddEngineer();
-    }
+    // call either intern or engineer to be created and added to team, else exit and create html
+    checkFullTeam(response.managerTeamList);
 })
 
 // function to call in order to add intern when selected as a team member
@@ -79,12 +74,20 @@ function managerAddIntern(){
             type: 'input',
             message: 'Enter the Intern\'s School:',
         },
+        {
+            name: 'managerTeamList',
+            type: 'list',
+            message: 'Who would you like to add to this team?',
+            choices: ['Engineer', 'Intern', 'Exit']
+        }
     ])
     .then(response => {
         // create a new intern
         let intern = new Intern(response.internName, response.internId, response.internEmail, response.internSchool);
         // add to array of full team
         managerFullTeam.push(intern);
+
+        checkFullTeam(response.managerTeamList);
     })
 }
 
@@ -110,15 +113,37 @@ function managerAddEngineer(){
         {
             name: 'engineerGithub',
             type: 'input',
-            message: 'Enter the Engineer\'s GitHub:',
+            message: 'Enter the Engineer\'s GitHub Username:',
         },
+        {
+            name: 'managerTeamList',
+            type: 'list',
+            message: 'Who would you like to add to this team?',
+            choices: ['Engineer', 'Intern', 'Exit']
+        }
     ])
     .then(response => {
         // create a new engineer
         let engineer = new Engineer(response.engineerName, response.engineerId, response.engineerEmail, response.engineerGithub);
         // add to array of full team
-        managerFullTeam.push(intern);
+        managerFullTeam.push(engineer);
+
+        checkFullTeam(response.managerTeamList);
     })
+}
+
+// function to check for team member and call for additional team members based on selection by user
+function checkFullTeam(member){
+    if (member === 'Intern'){
+        managerAddIntern();
+    }
+    else if (member === 'Engineer'){
+        managerAddEngineer();
+    }
+    else {
+        // exit team creation adn generate html
+        generateFullTeam();
+    }
 }
 
 // loops through full team to generate html of the entire team
@@ -127,4 +152,5 @@ function generateFullTeam(){
     //     // create new file or overwrite if it exists
     //     fs.writeFileSync(generatedHtml, '');
     // })
+    console.log(managerFullTeam)
 }
