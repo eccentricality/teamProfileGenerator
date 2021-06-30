@@ -50,6 +50,9 @@ inquirer.prompt([
     if (response.managerTeamList === 'Intern'){
         managerAddIntern();
     }
+    if (response.managerTeamList === 'Engineer'){
+        managerAddEngineer();
+    }
 })
 
 // function to call in order to add intern when selected as a team member
@@ -111,7 +114,10 @@ function managerAddEngineer(){
         },
     ])
     .then(response => {
-        fs.writeFileSync(generatedHtml, '');
+        // create a new engineer
+        let engineer = new Engineer(response.engineerName, response.engineerId, response.engineerEmail, response.engineerGithub);
+        // add to array of full team
+        managerFullTeam.push(intern);
     })
 }
 
