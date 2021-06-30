@@ -38,7 +38,7 @@ inquirer.prompt([
         name: 'managerTeamList',
         type: 'list',
         message: 'Who would you like to add to this team?',
-        choices: ['Engineer', 'Intern', 'Exit']
+        choices: ['Intern', 'Engineer', 'Exit']
     }
 ])
 .then(response => {
@@ -78,7 +78,7 @@ function managerAddIntern(){
             name: 'managerTeamList',
             type: 'list',
             message: 'Who would you like to add to this team?',
-            choices: ['Engineer', 'Intern', 'Exit']
+            choices: ['Intern', 'Engineer', 'Exit']
         }
     ])
     .then(response => {
@@ -119,7 +119,7 @@ function managerAddEngineer(){
             name: 'managerTeamList',
             type: 'list',
             message: 'Who would you like to add to this team?',
-            choices: ['Engineer', 'Intern', 'Exit']
+            choices: ['Intern', 'Engineer', 'Exit']
         }
     ])
     .then(response => {
