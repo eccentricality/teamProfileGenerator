@@ -7,7 +7,7 @@ const inquirer = require('inquirer');
 // import fs to generate html
 const fs = require('fs');
 // html file path variable
-const generatedHtml = './'
+const generatedHtml = './dist/fullRoster.html'
 
 // array of full team members
 let managerFullTeam = [];
@@ -38,7 +38,7 @@ inquirer.prompt([
         name: 'managerTeamList',
         type: 'list',
         message: 'Who would you like to add to this team?',
-        choices: ['Intern', 'Engineer', 'Exit']
+        choices: ['Intern', 'Engineer']
     }
 ])
 .then(response => {
@@ -77,7 +77,7 @@ function managerAddIntern(){
         {
             name: 'managerTeamList',
             type: 'list',
-            message: 'Who would you like to add to this team?',
+            message: 'Who else would you like to add to this team?',
             choices: ['Intern', 'Engineer', 'Exit']
         }
     ])
@@ -118,7 +118,7 @@ function managerAddEngineer(){
         {
             name: 'managerTeamList',
             type: 'list',
-            message: 'Who would you like to add to this team?',
+            message: 'Who else would you like to add to this team?',
             choices: ['Intern', 'Engineer', 'Exit']
         }
     ])
@@ -148,9 +148,7 @@ function checkFullTeam(member){
 
 // loops through full team to generate html of the entire team
 function generateFullTeam(){
-    // .then(response => {
-    //     // create new file or overwrite if it exists
-    //     fs.writeFileSync(generatedHtml, '');
-    // })
+        // create new file or overwrite if it exists
+    fs.writeFileSync(generatedHtml, '');
     console.log(managerFullTeam)
 }
