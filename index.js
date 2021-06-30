@@ -173,28 +173,31 @@ return `<!DOCTYPE html>
         <h2>My Team</h2>
     </nav>
 
-    <section class="cardContainer">`
+    <section class="cardContainer">`;
 }
 
 // function to help iterate over teammates within html generating function
-function generateTeammate(managerTeammates){
-    return `<main class="rosterCard">
+function generateTeammate(managerTeammate){
+    return `
+    
+    <main class="rosterCard">
 
     <figure class="rosterTitle">
-        <h3>${managerFullTeam.returnName()}</h3>
-        <h3>${managerFullTeam.returnRole()}</h3>
+        <h3 class="name">${managerTeammate.returnName()}</h3>
+        <h3 class="role">${managerTeammate.returnRole()}</h3>
     </figure>
 
     <figure class="rosterBody">
         <ul class="detailsList">
-            <li class="memberDetails">Name</li>
-            <li class="memberDetails">ID: ${managerFullTeam.returnId()}</li>
-            <li class="memberDetails">Email: <a href="mailto:${managerFullTeam.returnEmail()}">${managerFullTeam.returnEmail()}</a></a></li>
-            ${managerFullTeam.returnRoleInfo()}
+            <li class="memberDetails">ID: ${managerTeammate.returnId()}</li>
+            <li class="memberDetails">Email: <a target="_blank" href="mailto:${managerTeammate.returnEmail()}">${managerTeammate.returnEmail()}</a></a></li>
+            ${managerTeammate.returnRoleInfo()}
         </ul>
     </figure>
 
-</main>`;
+    </main>`
+    
+    ;
 }
 
 // function to close html tags once all members are added in
@@ -224,5 +227,5 @@ function generateFullTeam(){
     initialHtml += closeHtmlTags();
 
     // write the final product to file
-    fs.writeFileSync(closeHtmlTags,initialHtml);
+    fs.writeFileSync(generatedHtml,initialHtml);
 }
