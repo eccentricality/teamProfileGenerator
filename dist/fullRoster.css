@@ -57,8 +57,16 @@ body {
     font-size: 1.3em;
 }
 
+.roleIcon {
+    height: 40px;
+    width: 40px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5px;
+}
+
 .rosterBody {
-    padding-top: 3em;
+    padding-top: 1.5em;
 }
 
 .rosterBody ul {

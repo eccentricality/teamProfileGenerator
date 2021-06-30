@@ -185,6 +185,7 @@ function generateTeammate(managerTeammate){
     <figure class="rosterTitle">
         <h3 class="name">${managerTeammate.returnName()}</h3>
         <h3 class="role">${managerTeammate.returnRole()}</h3>
+        <img class="roleIcon" src="../img/${managerTeammate.returnRoleIcon()}">
     </figure>
 
     <figure class="rosterBody">
