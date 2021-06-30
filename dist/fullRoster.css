@@ -6,25 +6,51 @@
 }
 
 .navBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
     background-color: var(--orange);
     text-align: center;
     color: white;
     height: 100px;
+    width: 100%;
+    text-align: center;
+    font-size: 3em;
 }
 
-body {
+body { 
+    font-family: 'Didact Gothic', sans-serif;
+    margin: 0;
+}
 
+.cardContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .rosterCard {
-    width: 200px;
-    height: 400px;
+    min-width: 200px;
+    height: 250px;
+    background-color: white;
+    margin: 1.5em;
+
+    /* https://html-css-js.com/css/generator/box-shadow/ */
+    -webkit-box-shadow: 5px 5px 15px 5px #000000; 
+    box-shadow: 5px 5px 15px 5px #000000;
 }
 
 .rosterTitle {
-
+    background-color: var(--blue);
+    color: white;
 }
 
 .rosterBody {
-    
+
+}
+
+.rosterBody ul {
+    list-style-type: none;
 }
